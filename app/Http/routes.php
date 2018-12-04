@@ -11,6 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Front@index'); 
+Route::get('/products', 'Front@products');
+Route::get('/products/details/{id}', 'Front@products_details');
+Route::get('/products/categories', 'Front@product_categories');
+Route::get('/products/brands', 'Front@product_brands');
+Route::get('/blog', 'Front@blog');
+Route::get('/blog/post/{id}', 'Front@blog_post');
+Route::get('/login', 'Front@login');
+Route::get('/logout', 'Front@logout');
+Route::get('/checkout', 'Front@checkout');
+Route::get('/cart', 'Front@cart');
+Route::get('/search/{query}', 'Front@search');
+
+
+
