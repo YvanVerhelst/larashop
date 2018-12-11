@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -25,4 +26,39 @@ Route::get('/cart', 'Front@cart');
 Route::get('/search/{query}', 'Front@search');
 
 
+Route::get('/insert', function(){
+	Category::create(array('name' => 'MUSIC'));
+	return 'category added';
+});
+
+Route::get('/read', function(){
+	$category = new Category();
+	$data = $category->all(array('name', 'id'));
+	foreach ($data as $list){
+		echo $list->id . ' ' . $list->name . '<br>';
+	}
+});
+
+Route::get('/update', function(){
+	$category = new Category();
+	$mCategory = $category::find(6);
+	$mCategory->name = 'HEAVY METAL';
+	$mCategory->save();
+
+	$data = $mCategory->all(array('name', 'id'));
+	foreach ($data as $list){
+		echo $list->id . ' ' . $list->name . '<br>';
+	}
+});
+
+Route::get('/delete', function(){
+	$category = new Category();
+	$mCategory = $category::find(5);
+	$mCategory->delete();
+
+	$data = $mCategory->all(array('name', 'id'));
+	foreach ($data as $list){
+		echo $list->id . ' ' . $list->name . '<br>';
+	}
+});
 
